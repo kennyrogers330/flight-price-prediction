@@ -1,50 +1,153 @@
-# Flight Fare Prediction - a Classic Time Series Project
-* Flight fare prediction is a classical problem of time series forecasting that finds trends in past observations to outline the future
-* Many popular flight booking websites today, including Google Flights, showcase important insights on:
-  * Current fair status: high, low or fair
-  * Past fare trends, upcoming future trends and 
-  * Helps decide the right time to book a flight ticket.
-* In this project, we are going to build a Python Flight Fare Prediction App, that returns the fare prediction for a given set of travel details, like:  departure date, arrival date, departure city, arrival city, stoppages, and the airline carrier.
+# ✈️ Flight Fare Prediction Web Application
 
-## App Functionality
-![](templates/App_Functionality.gif)
+This project is a machine learning powered web application that predicts airline ticket prices based on trip details such as travel dates, source city, destination city, airline carrier, and number of stops. The goal of the project is to demonstrate how machine learning models can be integrated into an interactive web application that generates real-time predictions based on user input.
 
-## Steps to run Flight Fare App - on Windows
+Flight price prediction is a classical forecasting problem where historical flight data is analyzed to identify patterns in airline pricing. Many modern travel platforms such as Google Flights provide insights like price trends and fare predictions to help travelers determine the best time to purchase tickets. This project recreates a simplified version of that concept by building a predictive model and deploying it through a user-friendly web interface.
 
-* Prerequisites: [Python 3.9](https://www.python.org/downloads/) (ensure Python is added to [PATH](https://medium.com/co-learning-lounge/how-to-download-install-python-on-windows-2021-44a707994013)) + [Git](https://git-scm.com/downloads) Client 
-* Open GIT CMD >> navigate to working directory >> Clone this Github Repo (or download project files from GitHub directly)
+The machine learning model was trained using a dataset containing historical flight information including airline carriers, travel routes, departure and arrival times, number of stops, and ticket prices. Feature engineering techniques were applied to transform the raw data into a format suitable for model training. For example, departure and arrival times were decomposed into hour and minute components, travel duration was calculated, and categorical variables such as airline, source, and destination were converted into numerical features using one-hot encoding.
 
-      git clone https://github.com/skillcate/flight-price-prediction.git  
-* Open Windows Powershell >> navigate to new working directory (cloned repo folder)
-* Run Project in Flask (Using PIP + Virtualenv)
- 
-        pip install virtualenv                  # install virtual environment        
-        virtualenv ENV                          # create virtual environment by the name ENV
-        .\ENV\Scripts\activate                  # activate ENV
-        pip install -r .\requirements.txt       # install project dependencies
-        python app.py                           # run the project
-        deactivate                              # close virtual environment once done
-  
+The trained Random Forest regression model is stored as a serialized model file and integrated into a Streamlit web application. The interface allows users to enter travel details through dropdown menus, date selectors, and time inputs. After the user submits the form, the application processes the input data, converts it into the same feature format used during training, and generates a predicted flight ticket price instantly.
 
-### Steps to run Flight Fare App - on Mac
+The application also includes a modern interface design featuring gradient backgrounds, glassmorphism-style cards, and a trip summary panel that dynamically displays selected travel information such as source, destination, number of stops, and flight duration.
 
-* Prerequisites: [Python 3.9](https://www.python.org/downloads/)
-* Open Terminal >> navigate to working directory >> Clone this Github Repo (or download project files from GitHub directly)
+This project demonstrates the complete machine learning workflow including data preprocessing, feature engineering, model training, and deployment through an interactive web interface.
 
-        git clone https://github.com/skillcate/flight-price-prediction.git  
-* Navigate to project working directory (cloned repo folder)
-* Run Project in Flask (Using PIP + Virtualenv)
+---
 
-        pip install virtualenv                  # install virtual environment
-        virtualenv ENV                          # create virtual environment by the name ENV
-        source ENV/bin/activate                 # activate ENV
-        pip install -r requirements.txt         # install project dependencies
-        python app.py                           # run the project
-        deactivate                              # close virtual environment once done
-        
-### Bug / Feature Request
-If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/skillcate/flight-price-prediction/issues) by including your search query and the expected result.
+# 🚀 Features
 
-### Important links:
-* [Dataset](https://www.kaggle.com/datasets/nikhilmittal/flight-fare-prediction-mh)
-* [Project Folder on Drive](https://drive.google.com/drive/folders/1vnapi048bbmoXyoxOLLX6W_tA6a1uQ9w?usp=sharing)
+• Predict airline ticket prices based on travel details  
+• Interactive web interface built with Streamlit  
+• Real-time price prediction using a trained Random Forest model  
+• Feature engineering for time and categorical variables  
+• Trip summary dashboard displaying selected travel parameters  
+• Modern responsive UI design
+
+---
+
+# 🧠 Technologies Used
+
+Python  
+Pandas  
+NumPy  
+Scikit-learn  
+Streamlit
+
+---
+
+# 📊 Dataset
+
+The dataset used for training the machine learning model is publicly available on Kaggle.
+
+Dataset Link:  
+https://www.kaggle.com/datasets/nikhilmittal/flight-fare-prediction-mh
+
+The dataset contains historical flight information including:
+
+- Airline carriers
+- Source and destination cities
+- Departure and arrival times
+- Total number of stops
+- Ticket prices
+
+---
+
+# 📂 Project Structure
+
+```
+flight-price-prediction
+│
+├── streamlit_app.py
+├── app.py
+├── c1_flight_rf.pkl
+├── c2_flight_rf.pkl
+├── requirements.txt
+├── static/
+├── templates/
+└── README.md
+```
+
+**Description**
+
+- `streamlit_app.py` – Main Streamlit application interface
+- `app.py` – Original backend prediction logic
+- `c1_flight_rf.pkl` – Trained Random Forest model
+- `c2_flight_rf.pkl` – Alternative trained model
+- `requirements.txt` – Project dependencies
+- `static/` – Images and UI assets
+- `templates/` – HTML templates from earlier implementation
+
+---
+
+# ⚙️ Installation
+
+## 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/kennyrogers330/flight-price-prediction.git
+cd flight-price-prediction
+```
+
+---
+
+## 2️⃣ Create a Virtual Environment
+
+### Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### Mac / Linux
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 4️⃣ Run the Application
+
+```bash
+streamlit run streamlit_app.py
+```
+
+After running the command, the application will open in your browser:
+
+```
+http://localhost:8501
+```
+
+---
+
+# 🧩 How the Prediction Works
+
+1. The user enters travel details such as departure date, arrival time, airline, source city, destination city, and number of stops.
+2. The application performs feature engineering on the input values.
+3. The features are converted into numerical format using the same transformations used during model training.
+4. The trained Random Forest regression model receives the processed input.
+5. The application returns an estimated flight ticket price.
+
+---
+
+# 📸 Example Interface
+
+The web application provides a clean interface where users can enter travel details and receive predicted ticket prices instantly.
+
+---
+
+---
+
+# 👤 Author
+
+Machine Learning Flight Fare Prediction Application developed using Python, Scikit-learn, and Streamlit.
