@@ -143,11 +143,3 @@ http://localhost:8501
 # 📸 Example Interface
 
 The web application provides a clean interface where users can enter travel details and receive predicted ticket prices instantly.
-
----
-
----
-
-# 👤 Author
-
-Machine Learning Flight Fare Prediction Application developed using Python, Scikit-learn, and Streamlit.
