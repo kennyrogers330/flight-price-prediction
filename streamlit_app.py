@@ -4,6 +4,7 @@ import pickle
 import base64
 from pathlib import Path
 from datetime import datetime, date, time
+import joblib
 
 st.set_page_config(
     page_title="Flight Fare Predictor",
@@ -92,14 +93,16 @@ def build_features(dep_dt, arr_dt, stops, airline, source, destination):
 
 def load_model():
     candidates = [
-        BASE_DIR / "c2_flight_rf.pkl",
-        BASE_DIR / "c1_flight_rf.pkl"
+        # BASE_DIR / "c2_flight_rf.pkl",
+        # BASE_DIR / "c1_flight_rf.pkl"
+        BASE_DIR / "flight_rf_model.pkl"
     ]
 
     for path in candidates:
         if path.exists():
-            with open(path, "rb") as f:
-                return pickle.load(f)
+            # with open(path, "rb") as f:
+            #     return pickle.load(f)
+            return joblib.load(path)
     return None
 
 
